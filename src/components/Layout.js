@@ -10,14 +10,18 @@ export default function Layout() {
       <aside className="sidebar">
         <div className="logo">NexaVerse</div>
         <nav className="sidebar-nav">
-          <NavLink to="/">Overview</NavLink>
-          <NavLink to="/alunos">Alunos</NavLink>
-          <NavLink to="/personals">Personal Trainers</NavLink>
-          <NavLink to="/planos">Planos</NavLink>
-          <NavLink to="/pagamentos">Pagamentos</NavLink>
-          <NavLink to="/avaliacoes">Avaliações</NavLink>
-          <NavLink to="/treinos">Treinos</NavLink>
-          <NavLink to="/alterar-senha">Alterar Senha</NavLink>
+          <NavLink to="/" className={({ isActive }) => (isActive ? 'active' : '')}>Overview</NavLink>
+          <NavLink to="/alunos" className={({ isActive }) => (isActive ? 'active' : '')}>Alunos</NavLink>
+          {user?.perfil === 'Administrador' && (
+            <NavLink to="/personals" className={({ isActive }) => (isActive ? 'active' : '')}>Personal Trainers</NavLink>
+          )}
+          {user?.perfil === 'Administrador' && (
+            <NavLink to="/planos" className={({ isActive }) => (isActive ? 'active' : '')}>Planos</NavLink>
+          )}
+          <NavLink to="/pagamentos" className={({ isActive }) => (isActive ? 'active' : '')}>Pagamentos</NavLink>
+          <NavLink to="/avaliacoes" className={({ isActive }) => (isActive ? 'active' : '')}>Avaliações</NavLink>
+          <NavLink to="/treinos" className={({ isActive }) => (isActive ? 'active' : '')}>Treinos</NavLink>
+          <NavLink to="/alterar-senha" className={({ isActive }) => (isActive ? 'active' : '')}>Alterar Senha</NavLink>
         </nav>
         <div className="sidebar-footer">
           <button className="logout-button" onClick={logout}>Log out</button>

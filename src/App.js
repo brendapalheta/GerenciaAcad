@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
+import { DataProvider } from './contexts/DataContext';
 import LoginPage from './pages/LoginPage';
 import DashboardPage from './pages/DashboardPage';
 import AlunosPage from './pages/AlunosPage';
@@ -20,28 +21,30 @@ function ProtectedRoute({ children }) {
 function App() {
   return (
     <AuthProvider>
-      <Router>
-        <Routes>
-          <Route path="/login" element={<LoginPage />} />
-          <Route
-            path="/*"
-            element={
-              <ProtectedRoute>
-                <Layout />
-              </ProtectedRoute>
-            }
-          >
-            <Route index element={<DashboardPage />} />
-            <Route path="alunos" element={<AlunosPage />} />
-            <Route path="personals" element={<PersonalsPage />} />
-            <Route path="planos" element={<PlanosPage />} />
-            <Route path="pagamentos" element={<PagamentosPage />} />
-            <Route path="avaliacoes" element={<AvaliacoesPage />} />
-            <Route path="treinos" element={<TreinosPage />} />
-            <Route path="alterar-senha" element={<AlterarSenhaPage />} />
-          </Route>
-        </Routes>
-      </Router>
+      <DataProvider>
+        <Router>
+          <Routes>
+            <Route path="/login" element={<LoginPage />} />
+            <Route
+              path="/*"
+              element={
+                <ProtectedRoute>
+                  <Layout />
+                </ProtectedRoute>
+              }
+            >
+              <Route index element={<DashboardPage />} />
+              <Route path="alunos" element={<AlunosPage />} />
+              <Route path="personals" element={<PersonalsPage />} />
+              <Route path="planos" element={<PlanosPage />} />
+              <Route path="pagamentos" element={<PagamentosPage />} />
+              <Route path="avaliacoes" element={<AvaliacoesPage />} />
+              <Route path="treinos" element={<TreinosPage />} />
+              <Route path="alterar-senha" element={<AlterarSenhaPage />} />
+            </Route>
+          </Routes>
+        </Router>
+      </DataProvider>
     </AuthProvider>
   );
 }
