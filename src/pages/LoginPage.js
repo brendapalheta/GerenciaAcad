@@ -21,19 +21,44 @@ export default function LoginPage() {
 
   return (
     <div className="login-page">
-      <div className="login-card">
-        <div className="hero-panel">
-          <h1>NexaVerse</h1>
-          <p>Gestão de academia com foco em aulas, alunos e treinos.</p>
+      <div className="login-card login-split">
+        <div className="hero-panel hero-login-panel">
+          <div className="hero-top">
+            <span className="hero-brand">DesignAcademy</span>
+            <div className="hero-cta">Explore Course List</div>
+          </div>
+          <div className="hero-copy">
+            <h1>Unleash your<br />fitness potential</h1>
+            <p>Controle sua academia com painel moderno, cadastros, planos, avaliações e treinos.</p>
+          </div>
+          <div className="hero-footer">
+            <div>
+              <strong>300+</strong>
+              <span>Cursos</span>
+            </div>
+            <div>
+              <strong>50+</strong>
+              <span>Personal trainers</span>
+            </div>
+            <div>
+              <strong>1000+</strong>
+              <span>Horas de conteúdo</span>
+            </div>
+          </div>
         </div>
         <form className="login-form" onSubmit={handleSubmit}>
-          <h2>Entrar</h2>
+          <h2>Acesse seu painel</h2>
+          <p>Use um dos perfis padrão ou seu usuário cadastrado.</p>
           {erro && <div className="alert danger">{erro}</div>}
-          <label>E-mail</label>
-          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-          <label>Senha</label>
-          <input type="password" value={senha} onChange={(e) => setSenha(e.target.value)} required />
-          <button type="submit">Login</button>
+          <label>
+            E-mail
+            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+          </label>
+          <label>
+            Senha
+            <input type="password" value={senha} onChange={(e) => setSenha(e.target.value)} required />
+          </label>
+          <button type="submit" className="primary-button">Entrar</button>
         </form>
       </div>
     </div>
