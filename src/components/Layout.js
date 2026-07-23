@@ -1,16 +1,29 @@
 import React from 'react';
-import { NavLink, Outlet } from 'react-router-dom';
+import { NavLink, Outlet, useLocation } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
+
+const routeTitles = {
+  '/': 'Overview',
+  '/alunos': 'Alunos',
+  '/personals': 'Personal Trainers',
+  '/planos': 'Planos',
+  '/pagamentos': 'Pagamentos',
+  '/avaliacoes': 'Avaliações',
+  '/treinos': 'Treinos',
+  '/alterar-senha': 'Alterar Senha'
+};
 
 export default function Layout() {
   const { user, logout } = useAuth();
+  const location = useLocation();
+  const title = routeTitles[location.pathname] || 'Dashboard';
 
   return (
     <div className="app-grid">
       <aside className="sidebar">
         <div className="logo">NexaVerse</div>
         <nav className="sidebar-nav">
-          <NavLink to="/" className={({ isActive }) => (isActive ? 'active' : '')}>Overview</NavLink>
+          <NavLink to="/" end className={({ isActive }) => (isActive ? 'active' : '')}>Overview</NavLink>
           <NavLink to="/alunos" className={({ isActive }) => (isActive ? 'active' : '')}>Alunos</NavLink>
           {user?.perfil === 'Administrador' && (
             <NavLink to="/personals" className={({ isActive }) => (isActive ? 'active' : '')}>Personal Trainers</NavLink>
@@ -30,7 +43,7 @@ export default function Layout() {
       <main className="main-content">
         <header className="page-header">
           <div>
-            <h1>Dashboard</h1>
+            <h1>{title}</h1>
             <p>Bem-vindo(a), {user?.nome}</p>
           </div>
         </header>
