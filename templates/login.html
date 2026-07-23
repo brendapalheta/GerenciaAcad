@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - GerenciaAcad</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="login-page">
+    <div class="login-card">
+        <div class="hero-panel">
+            <h1>NexaVerse</h1>
+            <p>Gestão de Academia com estilo moderno e intuitivo.</p>
+        </div>
+        <form method="POST" class="login-form">
+            <h2>Entrar</h2>
+            <label>E-mail</label>
+            <input type="email" name="email" required>
+            <label>Senha</label>
+            <input type="password" name="senha" required>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+</body>
+</html>

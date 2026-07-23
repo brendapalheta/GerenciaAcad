@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GerenciaAcad</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="app-grid">
+        <aside class="sidebar">
+            <div class="logo">NexaVerse</div>
+            <nav class="sidebar-nav">
+                <a href="{{ url_for('home') }}">Overview</a>
+                <a href="{{ url_for('listar_alunos') }}">Alunos</a>
+                <a href="{{ url_for('listar_personals') }}">Personal Trainers</a>
+                <a href="{{ url_for('listar_planos') }}">Planos</a>
+                <a href="{{ url_for('listar_pagamentos') }}">Pagamentos</a>
+                <a href="{{ url_for('listar_avaliacoes') }}">Avaliações</a>
+                <a href="{{ url_for('listar_treinos') }}">Treinos</a>
+                <a href="{{ url_for('alterar_senha') }}">Alterar Senha</a>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="{{ url_for('logout') }}">Log out</a>
+            </div>
+        </aside>
+        <main class="main-content">
+            <header class="page-header">
+                <div>
+                    <h1>{{ title if title else 'Dashboard' }}</h1>
+                    <p>Bem-vindo(a), {{ session.get('nome', 'Usuário') }}</p>
+                </div>
+            </header>
+            <section class="content">
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <div class="flash-container">
+                        {% for categoria, mensagem in messages %}
+                            <div class="flash flash-{{ categoria }}">{{ mensagem }}</div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                {% endwith %}
+                {{ content | safe }}
+            </section>
+        </main>
+    </div>
+</body>
+</html>
